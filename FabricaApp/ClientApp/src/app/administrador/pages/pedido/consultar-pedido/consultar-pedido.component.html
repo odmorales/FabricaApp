@@ -1,0 +1,92 @@
+<mat-card>
+    <mat-card-title>
+        <div fxLayout="row" 
+             fxLayoutAlign="space-between center">
+            <div fxFlex="50">
+                <span>Pedidos</span>
+            </div>
+
+            <div fxFlex="50" fxLayoutAlign="end">
+                <div fxLayout="row" fxLayoutGap="15px" fxLayoutGap.xs="10px">
+                    <button mat-raised-button
+                            color="primary"
+                            (click)="registrar()">
+                            Registrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-card-title>
+
+    <hr>
+    <br>
+
+    <ng-container *ngIf="!pedidos || pedidos.length === 0; else datos">
+        <app-spinner [lista]="pedidos"></app-spinner>
+    </ng-container>
+
+    <ng-template #datos>
+        <p-table [value]="pedidos" 
+                 #dt
+                 [paginator]="true" 
+                 [rows]="10" 
+                 [showCurrentPageReport]="true" 
+                 responsiveLayout="scroll"
+                 currentPageReportTemplate="Viendo de {first} a {last} de {totalRecords} Pedidos" 
+                 [rowsPerPageOptions]="[10,25,50]"
+                 [globalFilterFields]="['usuario.usuNombre']">
+            <ng-template pTemplate="caption">
+                <div fxLayout="row" 
+                     fxLayoutAlign="space-between center">
+                     <div fxFlex="90">
+                         <app-input-filtro [dt]="dt"></app-input-filtro>
+                     </div>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Valor unitario</th>  
+                    <th>Cantidad</th>
+                    <th>IVA</th>
+                    <th>SubTotal</th>   
+                    <th>Total</th>
+                    <th>Descripcion</th>
+                    <th>Action</th>
+
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-pedido>
+                <tr>
+                    <td>{{ pedido.usuario.usuNombre | titlecase}}</td>
+                    <td>{{ pedido.pdVrUnit | currency:'CAD':'symbol-narrow':'1.0-4' }}</td>
+                    <td>{{ pedido.pedCant }}</td>
+                    <td>{{ pedido.pedIVA | percent:'2.0-2'}}</td>
+                    <td>{{ pedido.subTot | currency:'CAD':'symbol-narrow':'1.0-4' }}</td>
+                    <td>{{ pedido.pedTotal | currency:'CAD':'symbol-narrow':'1.0-4' }}</td>
+                    <td>{{ pedido.producto.proDesc }}</td>
+                    <td>
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                          </button>
+                          <mat-menu #menu="matMenu">
+                            <button mat-menu-item
+                                    [routerLink]="['/user/editar-pedido',pedido.id]">
+                              <mat-icon>edit</mat-icon>
+                              <span>Modificar</span>
+                            </button>
+                            <button mat-menu-item
+                                    (click)="eliminar( pedido )">
+                              <mat-icon>delete</mat-icon>
+                              <span>Elminar</span>
+                            </button>
+                          </mat-menu>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </ng-template>
+
+</mat-card>
+

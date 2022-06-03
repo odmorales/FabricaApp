@@ -1,0 +1,143 @@
+<mat-card class="mat-elevation-z4">
+    <mat-card-title>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxFlex="50">
+                <span> {{ ( pedido.id ) ? 'Editar' : 'Registrar' }} pedido</span>
+            </div>
+
+            <div fxFlex="50" fxLayoutAlign="end">
+                <div fxLayout="row" fxLayoutGap="15px" fxLayoutGap.xs="10px">
+                    <button mat-raised-button 
+                            color="primary"
+                            (click)="consultar()">
+                        Consultar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-card-title>
+    <hr>
+    <br>
+
+    <mat-card-content>
+        <form autocomplete="off"
+              (submit)="guardar()"
+              [formGroup]="miFormulario">
+            
+            <div fxLayout="column">
+                <div fxLayout="row"
+                     fxLayoutGap="20px"
+                     fxLayout.lt-sm="colum"
+                     fxLayoutGap.lt-sm="0">
+                    
+                    <mat-form-field appearance="outline"
+                                    fxFlex="100">
+                        <mat-label>Usuario</mat-label>
+                        <input matInput
+                               type="text"
+                               placeholder="Usuario"
+                               formControlName="idUsuario"
+                               [matAutocomplete]="auto"
+                               [errorStateMatcher]="validarService.matcher">
+                        <mat-autocomplete #auto="matAutocomplete"
+                                          (optionSelected)="opcionSeleccionada( $event )">
+                            <mat-option *ngFor="let usuario of filteredOptions | async" [value]="usuario">
+                                {{ usuario.usuNombre | titlecase }}
+                            </mat-option>
+                            <mat-option *ngIf="lista.length === 0" [value]="">
+                                No hay opciones.
+                            </mat-option>
+                        </mat-autocomplete> 
+                        <mat-error 
+                        *ngIf="validarService.campoEsValido('idUsuario')">
+                        {{validarService.getMensaje('idUsuario')}}
+                        </mat-error>
+                            
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline"
+                                    fxFlex="100">
+                        <mat-label>Producto</mat-label>
+                        <input matInput
+                               type="number"
+                               placeholder="Producto"
+                               formControlName="idProducto"
+                               [errorStateMatcher]="validarService.matcher"
+                               [matAutocomplete]="auto2">
+                            <mat-autocomplete #auto2="matAutocomplete">
+                                <mat-option *ngFor="let producto of productos" [value]="producto.id">
+                                    {{producto.id}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        <mat-error 
+                        *ngIf="validarService.campoEsValido('idProducto')">
+                        {{validarService.getMensaje('idProducto')}}
+                        </mat-error>
+                            
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row"
+                     fxLayoutGap="20px"
+                     fxLayout.lt-sm="colum"
+                     fxLayoutGap.lt-sm="0">
+                    
+                    <mat-form-field appearance="outline"
+                                    fxFlex="100">
+                        <mat-label>Valor unitario</mat-label>
+                        <input matInput
+                               type="number"
+                               placeholder="Valor unitario"
+                               formControlName="pdVrUnit"
+                               [errorStateMatcher]="validarService.matcher">
+                        <mat-error 
+                        *ngIf="validarService.campoEsValido('pdVrUnit')">
+                        {{validarService.getMensaje('pdVrUnit')}}
+                        </mat-error>
+                            
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline"
+                                    fxFlex="100">
+                        <mat-label>Cantidad</mat-label>
+                        <input matInput
+                               type="number"
+                               placeholder="Cantidad"
+                               formControlName="pedCant"
+                               [errorStateMatcher]="validarService.matcher">
+                        <mat-error 
+                        *ngIf="validarService.campoEsValido('pedCant')">
+                        {{validarService.getMensaje('pedCant')}}
+                        </mat-error>
+                            
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline"
+                                    fxFlex="100">
+                        <mat-label>IVA</mat-label>
+                        <input matInput
+                               type="number"
+                               placeholder="IVA"
+                               formControlName="pedIVA"
+                               [errorStateMatcher]="validarService.matcher">
+                        <mat-error 
+                        *ngIf="validarService.campoEsValido('pedIVA')">
+                        {{validarService.getMensaje('pedCant')}}
+                        </mat-error>
+                            
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div fxLayoutAlign="end center">
+                <button type="submit"
+                        mat-raised-button
+                        color="primary">
+                    <mat-icon>save_as</mat-icon>
+                    {{ ( pedido.id ) ? 'Editar' : 'Guardar' }}
+                </button>
+            </div>
+        </form>
+    </mat-card-content>
+
+</mat-card>

@@ -1,0 +1,83 @@
+<mat-card>
+    <mat-card-title>
+        <div fxLayout="row" 
+             fxLayoutAlign="space-between center">
+            <div fxFlex="50">
+                <span>Productos</span>
+            </div>
+
+            <div fxFlex="50" fxLayoutAlign="end">
+                <div fxLayout="row" fxLayoutGap="15px" fxLayoutGap.xs="10px">
+                    <button mat-raised-button
+                            color="primary"
+                            (click)="registrar()">
+                            Registrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-card-title>
+
+    <hr>
+    <br>
+
+    <ng-container *ngIf="!productos || productos.length === 0; else datos">
+        <app-spinner [lista]="productos"></app-spinner>
+    </ng-container>
+
+    <ng-template #datos>
+        <p-table [value]="productos" 
+                 #dt
+                 [paginator]="true" 
+                 [rows]="10" 
+                 [showCurrentPageReport]="true" 
+                 responsiveLayout="scroll"
+                 currentPageReportTemplate="Viendo de {first} a {last} de {totalRecords} Productos" 
+                 [rowsPerPageOptions]="[10,25,50]"
+                 [globalFilterFields]="['proDesc']">
+            <ng-template pTemplate="caption">
+                <div fxLayout="row" 
+                     fxLayoutAlign="space-between center">
+                     <div fxFlex="90">
+                         <app-input-filtro [dt]="dt"></app-input-filtro>
+                     </div>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Id</th>
+                    <th>Descripcion</th>  
+                    <th>Precio</th>       
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-producto>
+                <tr>
+                    <td>{{ producto.id }}</td>
+                    <td>{{ producto.proDesc}}</td>
+                    <td>{{ producto.proValor | currency:'CAD':'symbol-narrow':'1.0-4' }}</td>
+                    <td>
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                          </button>
+                          <mat-menu #menu="matMenu">
+                            <button mat-menu-item
+                                    [routerLink]="['/user/editar-producto',producto.id]">
+                              <mat-icon>edit</mat-icon>
+                              <span>Modificar</span>
+                            </button>
+                            <button mat-menu-item
+                                    (click)="eliminar( producto )">
+                              <mat-icon>delete</mat-icon>
+                              <span>Elminar</span>
+                            </button>
+                          </mat-menu>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </ng-template>
+
+</mat-card>
+

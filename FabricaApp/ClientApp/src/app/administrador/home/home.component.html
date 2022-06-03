@@ -1,0 +1,80 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav="matSidenav" color="primary">
+        <mat-toolbar class="toolbar-sidenav">
+            <span>Fabrica App</span>
+
+            <span class="spacer"></span>
+
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon class="material-icons md-18">close</mat-icon>
+            </button>
+        </mat-toolbar>
+
+        <div class="mt-5">
+            <mat-selection-list [multiple]="false" (click)="cerrarSidenav()">
+                <mat-list-option class="texto-blanco" routerLink="consultar-usuario" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }">
+                    <mat-icon fontSet="material-icons-outlined" matListIcon>person</mat-icon>
+                    <p matLine>Usuario</p>
+                </mat-list-option>
+
+                <mat-list-option class="texto-blanco" routerLink="consultar-producto" routerLinkActive="active ">
+                    <mat-icon fontSet="material-icons-outlined " matListIcon>category</mat-icon>
+                    <p matLine>Producto</p>
+                </mat-list-option>
+
+                <mat-list-option class="texto-blanco" routerLink="consultar-pedido" routerLinkActive="active ">
+                    <mat-icon fontSet="material-icons-outlined " matListIcon>savings</mat-icon>
+                    <p matLine>Pedido</p>
+                </mat-list-option>
+
+            </mat-selection-list>
+        </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+        <mat-toolbar class="mat-elevation-z8">
+    <button *ngIf="!sidenav.opened" mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <span class="spacer"></span>
+
+    <div fxLayout="row"
+        fxLayoutGap="10px"
+        fxLayoutAlign="center center">
+
+        <div fxFlex>
+            <button mat-button [matMenuTriggerFor]="menuAvatar" aria-label="Example icon-button with a menu">
+                <div fxLayout="row"
+                    fxLayoutGap="5px"
+                    [style.margin]="'5px 0'">
+                    <p-avatar matListAvatar label="U" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
+                </div>
+            </button>
+            <mat-menu #menuAvatar="matMenu" xPosition="before">
+                <button mat-menu-item>
+                    <mat-icon class="material-icons-outlined material-icons md-18">account_circle</mat-icon>
+                    <span>Ver perfil</span>
+                </button>
+                
+                <mat-divider>
+                </mat-divider>
+                <button mat-menu-item 
+                        (click)="logout()">
+                    <mat-icon class="material-icons-outlined material-icons md-18">power_settings_new</mat-icon>
+                    <span>Logout</span>
+                </button>
+            </mat-menu>
+        </div>
+    </div>
+</mat-toolbar>
+
+        <div fxLayout="row" fxLayoutAlign="center">
+            <div fxFlex="95" [style.margin]="'50px 0'">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

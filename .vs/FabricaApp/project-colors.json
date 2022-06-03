@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "24a2ba14-efee-4f71-a7d4-65f2a4884110": {
+      "ProjectGuid": "24a2ba14-efee-4f71-a7d4-65f2a4884110",
+      "DisplayName": "FabricaApp",
+      "ColorIndex": 0
+    },
+    "300c5951-30e0-41ca-afb2-8f13867ee888": {
+      "ProjectGuid": "300c5951-30e0-41ca-afb2-8f13867ee888",
+      "DisplayName": "Datos",
+      "ColorIndex": 1
+    },
+    "2dd36e3d-0b58-42f0-b317-ad39807baa18": {
+      "ProjectGuid": "2dd36e3d-0b58-42f0-b317-ad39807baa18",
+      "DisplayName": "Entidad",
+      "ColorIndex": 2
+    },
+    "9a1940b4-3d56-4a68-a798-0b90ce5c195e": {
+      "ProjectGuid": "9a1940b4-3d56-4a68-a798-0b90ce5c195e",
+      "DisplayName": "Logica",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}

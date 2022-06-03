@@ -1,0 +1,17 @@
+D:\recurs\FabricaApp\Logica\bin\Debug\net6.0\Logica.deps.json
+D:\recurs\FabricaApp\Logica\bin\Debug\net6.0\Logica.dll
+D:\recurs\FabricaApp\Logica\bin\Debug\net6.0\ref\Logica.dll
+D:\recurs\FabricaApp\Logica\bin\Debug\net6.0\Logica.pdb
+D:\recurs\FabricaApp\Logica\bin\Debug\net6.0\Datos.dll
+D:\recurs\FabricaApp\Logica\bin\Debug\net6.0\Entidad.dll
+D:\recurs\FabricaApp\Logica\bin\Debug\net6.0\Datos.pdb
+D:\recurs\FabricaApp\Logica\bin\Debug\net6.0\Entidad.pdb
+D:\recurs\FabricaApp\Logica\obj\Debug\net6.0\Logica.csproj.AssemblyReference.cache
+D:\recurs\FabricaApp\Logica\obj\Debug\net6.0\Logica.GeneratedMSBuildEditorConfig.editorconfig
+D:\recurs\FabricaApp\Logica\obj\Debug\net6.0\Logica.AssemblyInfoInputs.cache
+D:\recurs\FabricaApp\Logica\obj\Debug\net6.0\Logica.AssemblyInfo.cs
+D:\recurs\FabricaApp\Logica\obj\Debug\net6.0\Logica.csproj.CoreCompileInputs.cache
+D:\recurs\FabricaApp\Logica\obj\Debug\net6.0\Logica.csproj.CopyComplete
+D:\recurs\FabricaApp\Logica\obj\Debug\net6.0\Logica.dll
+D:\recurs\FabricaApp\Logica\obj\Debug\net6.0\ref\Logica.dll
+D:\recurs\FabricaApp\Logica\obj\Debug\net6.0\Logica.pdb

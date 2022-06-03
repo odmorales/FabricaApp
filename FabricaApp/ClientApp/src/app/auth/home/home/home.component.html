@@ -1,0 +1,32 @@
+<mat-toolbar color="primary"
+             class="mat-elevation-z8">
+             <span>FabricaApp</span>
+             <span class="spacer"></span>
+
+             <div fxLayout="row"
+                  fxLayoutGap="10px">
+
+                  <div fxFlex
+                       fxLayout="row"
+                       fxLayoutAlign="center center">
+
+                       Registrarse
+
+                  </div>
+
+                  <div fxFlex>
+                      <button mat-icon-button
+                              (click)="registrar()">
+                         <mat-icon>login</mat-icon>
+                      </button>
+                  </div>
+             </div>
+</mat-toolbar>
+
+<div fxLayout="row" 
+    fxLayoutAlign="center">
+    <div fxFlex="95"
+    [style.margin]="'50px 0'">
+        <router-outlet></router-outlet>
+    </div>
+</div>
